@@ -25,16 +25,16 @@ public class Configuration {
     private LocalDateTime timestamp_added;
     private LocalDateTime timestamp_modified;
 
-    //@ManyToOne // Other side must have @OneToMany(mappedBy = "configuration")
+    @ManyToOne // Other side must have @OneToMany(mappedBy = "configuration")
     @JsonBackReference // Other side must have @JsonManagedReference
-    @JoinColumn(name="environment_id", nullable = false)
-    private Object environment; // To be replaced by Environment (from Petter)
+    @JoinColumn(name="environment_id", nullable = false) // Not needed by other side
+    private Environment environment; // To be replaced by Environment (from Petter)
 
 
-    //@ManyToOne // Other side must have @OneToMany(mappedBy = "configuration")
+    @ManyToOne // Other side must have @OneToMany(mappedBy = "configuration")
     @JsonBackReference // Other side must have @JsonManagedReference
-    @JoinColumn(name="user_id", nullable = false)
-    private long user; // To be replaced by User (from Salim)
+    @JoinColumn(name="user_id", nullable = false) // Not needed by other side
+    private User user; // To be replaced by User (from Salim)
 
 
     /*

@@ -25,9 +25,10 @@ public class Environment {
     private String short_name;
     private String description;
 
-    @OneToMany(mappedBy = "Configuration", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    //Kan være at Configuration skal være med liten c
+    @OneToMany(mappedBy = "environment")
     @JsonBackReference
-    private List<Configuration> configuration;
+    private List<Configuration> configurations;
 
 
 

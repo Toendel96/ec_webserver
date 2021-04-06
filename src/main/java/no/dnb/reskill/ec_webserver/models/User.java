@@ -23,7 +23,7 @@ public class User {
     private String user_type;
 
 
-    @OneToMany (mappedBy = "configuration")
+    @OneToMany (mappedBy = "user")
     @JsonManagedReference
     private List<Configuration> configurations;
 

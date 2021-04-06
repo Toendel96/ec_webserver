@@ -1,4 +1,4 @@
-package no.dnb.reskill.ec_webserver.entities;
+package no.dnb.reskill.ec_webserver.models;
 
 import lombok.*;
 

@@ -1,5 +1,6 @@
 package no.dnb.reskill.ec_webserver.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +24,9 @@ public class Environment {
     private String short_name;
     private String description;
 
-    @OneToMany(mappedBy = Configuration)
+    //@OneToMany(mappedBy = "Configuration", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    //@JsonBackReference
+
 
 
     @Override

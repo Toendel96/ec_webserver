@@ -14,14 +14,6 @@ public class SeedDBEnvironment {
     public SeedDBEnvironment(DataSource dataSource) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-        jdbcTemplate.update("INSERT INTO Environment (id, short_name, description) VALUES (?,?,?)",
-                new Object[]{1L, "DEV", "Development environment"});
-        jdbcTemplate.update("INSERT INTO Environment (id, short_name, description) VALUES (?,?,?)",
-                new Object[]{2L, "PROD", "Production environment"});
-        jdbcTemplate.update("INSERT INTO Environment (id, short_name, description) VALUES (?,?,?)",
-                new Object[]{3L, "Test", "Testing environment"});
-        jdbcTemplate.update("INSERT INTO Environment (id, short_name, description) VALUES (?,?,?)",
-                new Object[]{4L, "DISREC", "Disaster recovery"});
 
     }
 }

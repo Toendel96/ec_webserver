@@ -9,17 +9,15 @@ import javax.sql.DataSource;
 
 
 
-    @Component
-    @Order(1)
-    public class SeedDbUser {
-
-        @Autowired
-        public SeedDbUser(DataSource dataSource) {
-            JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-
-            jdbcTemplate.update("INSERT INTO User (id, username, password, user_type) VALUES (?,?,?,?)",
-                    new Object[]{ 1L, "Salim","test1", "Admin"});
+@Component
+@Order(1)
+public class SeedDbUser {
+    @Autowired
+    public SeedDbUser(DataSource dataSource) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
 
-}
+
+
     }
+}

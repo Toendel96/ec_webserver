@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 
 @Component
-@Order(3)
 public class SeedDbConfiguration {
 
     @Autowired
@@ -36,11 +35,17 @@ public class SeedDbConfiguration {
 
         // _______________
         jdbcTemplate.update("INSERT INTO Configuration (environment_id, key_name, value, user_id ) VALUES (?,?,?,?)",
-                new Object[]{ 1L,"Connection string for a database for application 1","",1L});
+                new Object[]{ 1L,"Dev configuration 1","Dev value 1",1L});
         jdbcTemplate.update("INSERT INTO Configuration (environment_id, key_name, value, user_id ) VALUES (?,?,?,?)",
-                new Object[]{ 2L,"Connection string for a database for application 1","",2L});
+                new Object[]{ 2L,"Prod configuration 1","Prod value 1",2L});
         jdbcTemplate.update("INSERT INTO Configuration (environment_id, key_name, value, user_id ) VALUES (?,?,?,?)",
-                new Object[]{ 3L,"Connection string for a database for application 1","",3L});
+                new Object[]{ 2L,"Prod configuration 2","Prod value 2",2L});
+        jdbcTemplate.update("INSERT INTO Configuration (environment_id, key_name, value, user_id ) VALUES (?,?,?,?)",
+                new Object[]{ 3L,"Test configuration 1", "Test value 1",3L});
+        jdbcTemplate.update("INSERT INTO Configuration (environment_id, key_name, value, user_id ) VALUES (?,?,?,?)",
+                new Object[]{ 3L,"Test configuration 2", "Test value 2",3L});
+        jdbcTemplate.update("INSERT INTO Configuration (environment_id, key_name, value, user_id ) VALUES (?,?,?,?)",
+                new Object[]{ 3L,"Test configuration 3","Test value 3", 3L});
 
     }
 }

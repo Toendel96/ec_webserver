@@ -1,0 +1,8 @@
+TODO:
+Create User entity
+Create Environment entity
+Create Configuration entity
+Update application.properties to support hibernate/h2
+
+
+

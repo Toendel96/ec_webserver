@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 
-public class SeedDbUser {
+
 
     @Component
     @Order(1)
-    public class SeedDbConfiguration {
+    public class SeedDbUser {
 
         @Autowired
-        public SeedDbConfiguration(DataSource dataSource) {
+        public SeedDbUser(DataSource dataSource) {
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
             jdbcTemplate.update("INSERT INTO User (id, username, password, user_type) VALUES (?,?,?,?)",
@@ -22,3 +22,4 @@ public class SeedDbUser {
 
 
 }
+    }

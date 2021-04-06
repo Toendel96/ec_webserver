@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -22,7 +24,14 @@ public class Configuration {
 
     private String key_name;
     private String value;
+    @CreationTimestamp
+    @Column(updatable = false,
+            columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime timestamp_added;
+
+    @UpdateTimestamp
+    @Column(updatable = false,
+            columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime timestamp_modified;
 
     @ManyToOne // Other side must have @OneToMany(mappedBy = "configuration")

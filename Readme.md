@@ -3,6 +3,11 @@ https://www.markdownguide.org/basic-syntax/
 
 # Team TODOs
 
+    Annet: 
+    * Avtale møtestruktur (faste tidspunkt, eller alltid på)?
+    * Fremdriftsplan og ansvarsfordeling?
+
+    
     // APPLICATION ???
     (kanskje til oppsummering)
 

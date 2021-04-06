@@ -10,5 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ConfigurationController {
     // Endpoints listed here
 
+    @RequestMapping("/user/authenticate?username&passord")
+
 
 }

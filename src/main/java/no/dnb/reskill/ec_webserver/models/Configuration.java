@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 public class Configuration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String key_name;
     private String value;
@@ -30,7 +30,7 @@ public class Configuration {
     private LocalDateTime timestamp_added;
 
     @UpdateTimestamp
-    @Column(updatable = false,
+    @Column(updatable = true,
             columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime timestamp_modified;
 
@@ -44,17 +44,5 @@ public class Configuration {
     @JsonBackReference // Other side must have @JsonManagedReference
     @JoinColumn(name="user_id", nullable = false) // Not needed by other side
     private User user; // To be replaced by User (from Salim)
-
-
-    /*
-     id
-- environment (FK Environment.id)
-- key_name
-- value
-- timestamp (added)
-- timestamp (updated)
-- modified_by (FK User.ID)
-     */
-
 
 }

@@ -1,12 +1,12 @@
 package no.dnb.reskill.ec_webserver.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,20 +18,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String user_id;
+    private String username;
     private String password;
+    private String user_type;
 
 
-    //@ManyToOne // Other side must have @OneToMany(mappedBy = "configuration")
-    @JsonBackReference // Other side must have @JsonManagedReference
-    @JoinColumn(name="environment_id", nullable = false)
-    private Object environment; // To be replaced by Environment (from Petter)
-
-
-    //@ManyToOne // Other side must have @OneToMany(mappedBy = "configuration")
-    @JsonBackReference // Other side must have @JsonManagedReference
-    @JoinColumn(name="user_id", nullable = false)
-    private long user; // To be replaced by User (from Salim)
+    @OneToMany (mappedBy = "configuration")
+    @JsonManagedReference
+    private List<Configuration> configurations;
 
 
     /*

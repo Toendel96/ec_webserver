@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 
-@Component
+//@Component
 public class SeedDb {
 
-    @Autowired
+    //@Autowired
     public SeedDb(DataSource dataSource) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 

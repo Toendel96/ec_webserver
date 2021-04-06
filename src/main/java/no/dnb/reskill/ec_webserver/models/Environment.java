@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -20,12 +21,13 @@ public class Environment {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY) //This equals auto_increment
-    @Getter private long id;
+    private long id;
     private String short_name;
     private String description;
 
-    //@OneToMany(mappedBy = "Configuration", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    //@JsonBackReference
+    @OneToMany(mappedBy = "Configuration", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JsonBackReference
+    private List<Configuration> configuration;
 
 
 

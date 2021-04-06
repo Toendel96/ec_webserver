@@ -6,8 +6,9 @@ import java.util.List;
 
 public interface ConfigurationService {
     // Which services should we offer for configuration?
-    public List<Configuration> getConfigurations();
-    public List<Configuration> getConfigurationsByEnvironmentId(Long environmentId);
+    public List<Configuration> findAll();
+    public List<Configuration> findByEnvironmentId(Long environmentId);
+    public Configuration findById(Long id);
 
 
 }

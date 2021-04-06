@@ -1,0 +1,57 @@
+RestClient in demo
+RestController for service - handle all incommon info
+Repository class to talk to the database 
+JPA and Entities - One to many
+
+Enviroment table and configuration er tomme ved oppstart, eller mottar info ved oppstart
+- Skal kunne redigeres i applikasjonen
+
+SeedDB for å hardkode brukernavn og passord til database
+
+To forskjellige resque folder
+- admin tasks
+- ?
+
+Andy startet med database
+så react
+UI ble siste steg (Andy anbefaler å starte med dette)
+
+
+Tanker:
+Må ha et Spring Boot prosjekt (port 8080)
+React prosjekt ved siden (port 3000)
+Litt usikker på om jeg foretrekker å få noe på plass og så bygge på, eller om vi bør gjøre store deler av UI-React jobben først
+
+Bli enig om H2 eller MySQL. Begge blir kanskje for heavy? Eventuelt starte med H2/MySQL og bygge på med flere alternativer senere
+
+Angående administrator tenker jeg enten alle administrator i egen tabell, eller brukertabell der vi legger på en kolonne for rettighetsnivå. Eks: 1 = bruker, 2 = admin
+
+
+Tabell Environment:
+- Name: DEV, Test, PROD, DISREC
+- Hvem opprettet
+- Hvem endret
+- Endret når
+- Hovedformål
+
+Tabell Admin:
+- Brukernavn
+- Passord
+
+Tabell Configuration:
+- Environment
+- Key name
+- A value
+- Timestamp
+
+
+Nøkkelpunkter: 
+1) Velkomstside/startside (index)
+2) Innlogging (UI lik for bruker og admin)
+3) Se Configuration data
+4) Admin side
+- Endre beskrivelse av eksisterende enviroment
+- Legge til nytt environment
+- Legge til, endre eller slette Configuration data
+- Se endret Configration data innenfor en tidsperiode (Ta i bruk Calender funksjonalitet, alternativt be bruker skrive inn data og sjekke mot regex) 
+- Alt på en plass eller splitte? Skal vi skjule elementer dersom vi mangler tilgang, eller skal vi ha egen side for admin og egen side for bruker? Dette er nok lettest

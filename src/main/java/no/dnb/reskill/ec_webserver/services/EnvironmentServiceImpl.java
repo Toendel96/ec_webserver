@@ -17,7 +17,6 @@ public class EnvironmentServiceImpl implements EnvironmentService {
         this.environmentRepository = environmentRepository;
     }
 
-
     @Override
     public List<Environment> findAll() {
         return (List<Environment>) environmentRepository.findAll();
@@ -33,9 +32,18 @@ public class EnvironmentServiceImpl implements EnvironmentService {
         Environment environment = findById(id);
         if (environment != null) {
             environment.setDescription(description);
-            return environmentRepository.save(environment);
-        } else {
-            return null;
-        }
+            return environmentRepository.save(environment); //Returns the saved entity;
+        } else return null;
     }
+
+    @Override
+    public boolean addEnvironment(Environment environment) {
+        Environment environment1 = findById(environment.getId());
+        if (environment1 == null) {
+            environmentRepository.save(environment);
+            return true;
+        } else return false;
+    }
+
+
 }

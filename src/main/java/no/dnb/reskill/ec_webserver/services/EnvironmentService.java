@@ -9,6 +9,7 @@ public interface EnvironmentService {
     public List<Environment> findAll();
     public Environment findById(Long id);
     public Environment updateDescriptionById(Long id, String description);
+    public boolean addEnvironment(Environment environment);
 
 
 }

@@ -27,22 +27,25 @@ Bli enig om H2 eller MySQL. Begge blir kanskje for heavy? Eventuelt starte med H
 Angående administrator tenker jeg enten alle administrator i egen tabell, eller brukertabell der vi legger på en kolonne for rettighetsnivå. Eks: 1 = bruker, 2 = admin
 
 
-Tabell Environment:
-- Name: DEV, Test, PROD, DISREC
-- Hvem opprettet
-- Hvem endret
-- Endret når
-- Hovedformål
+Tabell Environment (en-til-mange):
+- id
+- short_name: DEV, Test, PROD, DISREC
+- description
 
-Tabell Admin:
-- Brukernavn
-- Passord
+Tabell User:
+- id
+- username
+- password
+- usertype
 
-Tabell Configuration:
-- Environment
-- Key name
-- A value
-- Timestamp
+Tabell Configuration (mange-til-en):
+- id
+- environment (FK Environment.id)
+- key_name
+- value
+- timestamp (added)
+- timestamp (updated)
+- modified_by (FK User.ID)
 
 
 Nøkkelpunkter: 

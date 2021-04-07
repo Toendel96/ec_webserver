@@ -6,26 +6,26 @@ https://www.markdownguide.org/basic-syntax/
 - [ ] Avtale møtestruktur (faste tidspunkt, eller alltid på)?
 - [ ] Fremdriftsplan og ansvarsfordeling
 
+
 ### Applikasjon
 General/Application:
 - [ ] Hente oppsummering
 
-User:
-- [ ] **Liste opp alle brukere**
-- [ ] Logge inn / Autentisere administrator (inn: brukernavn og passord) > token
-- [ ] Validere token (inn: token) > boolean
+USER:
+- [ ] SALIM **Liste opp alle brukere**
+- [ ] SIGBJØRN Logge inn / Autentisere administrator (inn: brukernavn og passord) > token
+- [ ] SIGBJØRN Validere token (inn: token) > boolean
 NB: To ulike controllere? user-controller vs. admin-controller)
      
 
 ENVIRONMENT:
-
-- [ ] **Liste opp alle miljøer**
-- [ ] Hente konfigurasjoner for et bestemt miljø (inn: environment_id) > liste over konfigurasjoner
-- [ ] *Endre beskrivelse for et eksisterende miljø (kun admin)*
-- [ ] *Legge til nytt miljø (kun admin)*
+- [ ] PETTER **Liste opp alle miljøer**
+- [ ] PETTER Hente konfigurasjoner for et bestemt miljø (inn: environment_id) > liste over konfigurasjoner
+- [ ] PETTER *Endre beskrivelse for et eksisterende miljø (kun admin)*
+- [ ] PETTER *Legge til nytt miljø (kun admin)*
 
 CONFIGURATION:
-- [ ] **Hente konfigurasjoner (inn: environment_id) > liste over konfigurasjoner**
+- [X] SIGBJØRN **Hente konfigurasjoner (inn: environment_id) > liste over konfigurasjoner**
 - [ ] *Legge til configurasjon (kun admin)*
 - [ ] *Endre konfigurasjon (kun admin)*
 - [ ] *Slette konfigurasjon (kun admin)*

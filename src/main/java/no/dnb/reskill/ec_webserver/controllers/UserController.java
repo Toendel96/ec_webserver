@@ -20,7 +20,7 @@ public class UserController {
         this.userService = userService;
         }
 
-   @GetMapping(value="/all", produces={"application/json", "application/xml"})
+   @GetMapping(value="/all")
      public ResponseEntity<Collection<User>> findAll() {
        Collection<User> user = userService.findAll();
        if ( user == null ) {
@@ -32,7 +32,7 @@ public class UserController {
   }
 
 
-    @GetMapping(value="/{Id}", produces={"application/json", "application/xml"})
+    @GetMapping(value="/{Id}")
     public ResponseEntity<User> findById(@PathVariable Long Id) {
         User user = userService.findById(Id);
         if ( user == null ) {

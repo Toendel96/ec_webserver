@@ -28,14 +28,14 @@ public class EnvironmentController {
     }
 
     // Endpoints listed here
-    @GetMapping(value="/all", produces={"application/json", "application/xml"})
+    @GetMapping(value="/all")
     public ResponseEntity<Collection<Environment>> findAll() {
         Collection<Environment> environments = environmentService.findAll();
         if (environments == null ) return ResponseEntity.notFound().build();
         else return ResponseEntity.ok().body(environments);
     }
 
-    @GetMapping(value="/{id}", produces={"application/json", "application/xml"})
+    @GetMapping(value="/{id}")
     public ResponseEntity<Environment> findById(@PathVariable Long id) {
         Environment environment = environmentService.findById(id);
         if (environment == null ) return ResponseEntity.notFound().build();
@@ -43,7 +43,7 @@ public class EnvironmentController {
     }
 
     //Remove same method from ConfigurationController?
-    @GetMapping(value="/all/{environmentId}/configurations", produces={"application/json", "application/xml"})
+    @GetMapping(path="/all/{environmentId}/configurations")
     public ResponseEntity<Collection<Configuration>> findEnvironmentAndBelongingConfigurationsByEnvironmentId(@PathVariable Long environmentId) {
         //Collection<Environment> environments = environmentService.findAll();
         Collection<Configuration> configurations = configurationService.findByEnvironmentId(environmentId);
@@ -52,18 +52,14 @@ public class EnvironmentController {
     }
 
     //todo - Finish this method
-    @PutMapping(value="/updateEnvironmentDescription/{id}",
-            consumes = {"application/json", "application/xml"},
-            produces={"application/json", "application/xml"})
+    @PutMapping(value="/updateEnvironmentDescription/{id}")
     public ResponseEntity<Void> updateDescriptionById(@PathVariable Long id, @RequestParam(value="description", required=true) String description) {
         if (environmentService.updateDescriptionById(id, description) == null) return ResponseEntity.notFound().build();
         else return ResponseEntity.ok().build();
     }
 
     //todo - Finish this method
-    @PostMapping (value="/addEnvironment",
-            consumes = {"application/json", "application/xml"})
-            //produces ={"application/json", "application/xml"})
+    @PostMapping (value="/addEnvironment")
     public ResponseEntity<Environment> addEnvironment(@RequestBody Environment environment) {
         environmentService.addEnvironment(environment);
         Long id = environment.getId();

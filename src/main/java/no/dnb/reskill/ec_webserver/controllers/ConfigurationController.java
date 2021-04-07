@@ -20,7 +20,7 @@ public class ConfigurationController {
     }
 
     // Endpoints listed here
-    @GetMapping(value="/all", produces={"application/json", "application/xml"})
+    @GetMapping(value="/all")
     public ResponseEntity<Collection<Configuration>> findAll() {
         Collection<Configuration> configurations = configurationService.findAll();
         if ( configurations == null ) {
@@ -32,7 +32,7 @@ public class ConfigurationController {
     }
 
     //Remove this, and only use EnvironmentController.findEnvironmentAndBelongingConfigurationsByEnvironmentId() ?
-    @GetMapping(value="/byEnvironmentId/{environmentId}", produces={"application/json", "application/xml"})
+    @GetMapping(value="/byEnvironmentId/{environmentId}")
     public ResponseEntity<Collection<Configuration>> findByEnvironmentId(@PathVariable Long environmentId) {
         Collection<Configuration> configurations = configurationService.findByEnvironmentId(environmentId);
         if ( configurations == null ) {
@@ -43,7 +43,7 @@ public class ConfigurationController {
         }
     }
 
-    @GetMapping(value="/byId/{id}", produces={"application/json", "application/xml"})
+    @GetMapping(value="/byId/{id}")
     public ResponseEntity<Configuration> findById(@PathVariable Long id) {
         Configuration configuration = configurationService.findById(id);
         if ( configuration == null ) {

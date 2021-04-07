@@ -3,7 +3,7 @@ https://www.markdownguide.org/basic-syntax/
 
 # Team TODOs
 ### Samarbeid
-- [ ] Avtale møtestruktur (faste tidspunkt, eller alltid på)?
+- [X] Avtale møtestruktur (faste tidspunkt, eller alltid på)?
 - [ ] Fremdriftsplan og ansvarsfordeling
 
 
@@ -12,16 +12,16 @@ General/Application:
 - [ ] Hente oppsummering
 
 USER:
-- [ ] SALIM **Liste opp alle brukere**
+- [X] SALIM **Liste opp alle brukere**
 - [ ] SIGBJØRN Logge inn / Autentisere administrator (inn: brukernavn og passord) > token
-- [ ] SIGBJØRN Validere token (inn: token) > boolean
+- [X] SIGBJØRN Validere token (inn: token) > boolean
 NB: To ulike controllere? user-controller vs. admin-controller)
      
 
 ENVIRONMENT:
-- [ ] PETTER **Liste opp alle miljøer**
-- [ ] PETTER Hente konfigurasjoner for et bestemt miljø (inn: environment_id) > liste over konfigurasjoner
-- [ ] PETTER *Endre beskrivelse for et eksisterende miljø (kun admin)*
+- [X] PETTER **Liste opp alle miljøer**
+- [X] PETTER Hente konfigurasjoner for et bestemt miljø (inn: environment_id) > liste over konfigurasjoner
+- [X] PETTER *Endre beskrivelse for et eksisterende miljø (kun admin)*
 - [ ] PETTER *Legge til nytt miljø (kun admin)*
 
 CONFIGURATION:

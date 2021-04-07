@@ -53,4 +53,20 @@ public class EnvironmentController {
         } else return ResponseEntity.ok().body(configurations);
     }
 
+    //todo - Fullføre denne metoden
+    @GetMapping(value="/byId/updateEnvironmentDescription/{id}", produces={"application/json", "application/xml"})
+    public ResponseEntity<Environment> updateDescriptionById(@PathVariable Long id) {
+        String description = "null"; //Trenger denne fra React(?)
+        environmentService.updateDescriptionById(id, description);
+        return null;
+    }
+
+    //todo - Fullføre denne metoden
+    @GetMapping(value="/byId/addEnvironment", produces={"application/json", "application/xml"})
+    public ResponseEntity<Environment> addEnvironment() {
+        Environment environment = new Environment(); //Trenger verdier fra React(?)
+        environmentService.addEnvironment(environment);
+        return null;
+    }
+
 }

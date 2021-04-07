@@ -80,10 +80,10 @@ public class EnvironmentController {
             produces={"application/json","application/xml"}
     )
     public ResponseEntity<Environment> addEnvironment(@RequestBody Environment environment) {
-        environmentService.addEnvironment(environment);
-        Long id = environment.getId();
+        Environment e = environmentService.addEnvironment(environment);
+        Long id = e.getId();
         URI uri = URI.create("/"+id);
-        return ResponseEntity.created(uri).body(environment);
+        return ResponseEntity.created(uri).body(e);
     }
 
 }

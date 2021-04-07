@@ -38,9 +38,11 @@ public class EnvironmentServiceImpl implements EnvironmentService {
 
     @Override
     public Environment addEnvironment(Environment environment) {
-        Environment environment1 = findById(environment.getId());
-        if (environment1 == null) return environmentRepository.save(environment);
-            else return null;
+        //Environment environment1 = findById(environment.getId()); // Sig-kommentar: ID er ikke definert når et nytt Environment settes inn
+//        if (environment1 == null) return environmentRepository.save(environment);
+//            else return null;
+        return environmentRepository.save(environment);
+
     }
 
 

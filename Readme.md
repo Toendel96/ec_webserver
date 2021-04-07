@@ -8,7 +8,7 @@ https://www.markdownguide.org/basic-syntax/
 
 ### Applikasjon
 General/Application:
-- [ ]
+- [ ] Hente oppsummering
 
 User:
 - [ ] **Liste opp alle brukere**
@@ -21,15 +21,14 @@ ENVIRONMENT:
 
 - [ ] **Liste opp alle miljøer**
 - [ ] Hente konfigurasjoner for et bestemt miljø (inn: environment_id) > liste over konfigurasjoner
-- [ ] Hente oppsummering
-- [ ] Endre beskrivelse for et eksisterende miljø (kun admin)
-- [ ] Legge til nytt miljø (kun admin)
+- [ ] *Endre beskrivelse for et eksisterende miljø (kun admin)*
+- [ ] *Legge til nytt miljø (kun admin)*
 
 CONFIGURATION:
 - [ ] **Hente konfigurasjoner (inn: environment_id) > liste over konfigurasjoner**
-- [ ] Legge til configurasjon
-- [ ] Endre konfigurasjon
-- [ ] Slette konfigurasjon
+- [ ] *Legge til configurasjon (kun admin)*
+- [ ] *Endre konfigurasjon (kun admin)*
+- [ ] *Slette konfigurasjon (kun admin)*
 - [ ] Filtrere konfigurasjoner (ref tid for endring)
 
 

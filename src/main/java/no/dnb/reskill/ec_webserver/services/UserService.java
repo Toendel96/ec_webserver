@@ -10,4 +10,5 @@ public interface UserService {
     public List<User> findAll();
     public User findById(Long id);
 
+    boolean updateDescriptionById(Long id, String description);
 }

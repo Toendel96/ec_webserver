@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EnvironmentRepository extends CrudRepository<Environment, Long> {
 
-    //
-    @Query("SELECT e FROM Environment e")
-    Iterable<Environment> test(Long environment);
+    //Not used
+//    @Query("SELECT e FROM Environment e")
+//    Iterable<Environment> test(Long environment);
 }

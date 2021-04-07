@@ -1,6 +1,7 @@
 package no.dnb.reskill.ec_webserver.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,15 +22,13 @@ public class Environment {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY) //This equals auto_increment
-    private long id;
+    private Long id;
     private String short_name;
     private String description;
 
-    //Kan være at Configuration skal være med liten c
-    @OneToMany(mappedBy = "environment")
-    @JsonBackReference
-    private List<Configuration> configurations;
-
+//    @JsonManagedReference
+//    @OneToMany(mappedBy = "environment", fetch=FetchType.LAZY)
+//    private List<Configuration> configurations;
 
 
     @Override
@@ -44,6 +43,6 @@ public class Environment {
 
     @Override
     public int hashCode() {
-        return (int)id;
+        return id.intValue();
     }
 }

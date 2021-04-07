@@ -28,6 +28,8 @@ public class ConfigurationServicesImpl implements ConfigurationService {
         return (List<Configuration>) configurationRepository.findByEnvironmentId(environmentId);
     }
 
+
+
     @Override
     public Configuration findById(Long id) {
         return configurationRepository.findById(id).orElse(null);

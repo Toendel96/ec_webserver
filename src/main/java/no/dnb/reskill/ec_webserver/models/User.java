@@ -21,6 +21,8 @@ public class User {
     private String username;
     private String password;
     private String user_type;
+    @Transient // Prevents the variable from being stored in database
+    private String token;
 
 
     @OneToMany (mappedBy = "user")

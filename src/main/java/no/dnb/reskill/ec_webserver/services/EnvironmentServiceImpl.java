@@ -15,6 +15,8 @@ public class EnvironmentServiceImpl implements EnvironmentService {
 
     @Override
     public List<Configuration> getConfigurations() {
+
+
         return null;
     }
 }

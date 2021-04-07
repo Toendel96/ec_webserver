@@ -31,6 +31,7 @@ public class ConfigurationController {
         }
     }
 
+    //Remove this, and only use EnvironmentController.findEnvironmentAndBelongingConfigurationsByEnvironmentId() ?
     @GetMapping(value="/byEnvironmentId/{environmentId}", produces={"application/json", "application/xml"})
     public ResponseEntity<Collection<Configuration>> findByEnvironmentId(@PathVariable Long environmentId) {
         Collection<Configuration> configurations = configurationService.findByEnvironmentId(environmentId);

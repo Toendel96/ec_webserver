@@ -29,7 +29,6 @@ public class ConfigurationServicesImpl implements ConfigurationService {
     }
 
 
-
     @Override
     public Configuration findById(Long id) {
         return configurationRepository.findById(id).orElse(null);

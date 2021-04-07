@@ -35,7 +35,7 @@ public class EnvironmentController {
         } else return ResponseEntity.ok().body(environments);
     }
 
-    @GetMapping(value="/byId/{id}", produces={"application/json", "application/xml"})
+    @GetMapping(value="/{id}", produces={"application/json", "application/xml"})
     public ResponseEntity<Environment> findById(@PathVariable Long id) {
         Environment environment = environmentService.findById(id);
         if (environment == null ) {
@@ -44,7 +44,7 @@ public class EnvironmentController {
     }
 
     //Remove same method from ConfigurationController?
-    @GetMapping(value="/byEnvironmentId/{environmentId}/configurations", produces={"application/json", "application/xml"})
+    @GetMapping(value="/all/{environmentId}/configurations", produces={"application/json", "application/xml"})
     public ResponseEntity<Collection<Configuration>> findEnvironmentAndBelongingConfigurationsByEnvironmentId(@PathVariable Long environmentId) {
         //Collection<Environment> environments = environmentService.findAll();
         Collection<Configuration> configurations = configurationService.findByEnvironmentId(environmentId);
@@ -53,15 +53,15 @@ public class EnvironmentController {
         } else return ResponseEntity.ok().body(configurations);
     }
 
-    //todo - Fullføre denne metoden
+    //todo - Finish this method
     @GetMapping(value="/byId/updateEnvironmentDescription/{id}", produces={"application/json", "application/xml"})
-    public ResponseEntity<Environment> updateDescriptionById(@PathVariable Long id) {
-        String description = "null"; //Trenger denne fra React(?)
+    public ResponseEntity<Environment> updateDescriptionById(@PathVariable Long id, @RequestParam String description) {
+        //String description = "null"; //Trenger denne fra React(?)
         environmentService.updateDescriptionById(id, description);
         return null;
     }
 
-    //todo - Fullføre denne metoden
+    //todo - Finish this method
     @GetMapping(value="/byId/addEnvironment", produces={"application/json", "application/xml"})
     public ResponseEntity<Environment> addEnvironment() {
         Environment environment = new Environment(); //Trenger verdier fra React(?)

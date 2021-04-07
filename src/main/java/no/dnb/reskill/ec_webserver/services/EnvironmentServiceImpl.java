@@ -37,12 +37,10 @@ public class EnvironmentServiceImpl implements EnvironmentService {
     }
 
     @Override
-    public boolean addEnvironment(Environment environment) {
+    public Environment addEnvironment(Environment environment) {
         Environment environment1 = findById(environment.getId());
-        if (environment1 == null) {
-            environmentRepository.save(environment);
-            return true;
-        } else return false;
+        if (environment1 == null) return environmentRepository.save(environment);
+            else return null;
     }
 
 

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.Collection;
 
 @RestController
@@ -27,46 +28,62 @@ public class EnvironmentController {
     }
 
     // Endpoints listed here
-    @GetMapping(value="/all", produces={"application/json", "application/xml"})
+    @GetMapping(
+            value="/all",
+            produces={"application/json", "application/xml"}
+    )
     public ResponseEntity<Collection<Environment>> findAll() {
         Collection<Environment> environments = environmentService.findAll();
-        if (environments == null ) {
-            return ResponseEntity.notFound().build();
-        } else return ResponseEntity.ok().body(environments);
+        if (environments == null ) return ResponseEntity.notFound().build();
+        else return ResponseEntity.ok().body(environments);
     }
 
-    @GetMapping(value="/{id}", produces={"application/json", "application/xml"})
+    @GetMapping(
+            value="/{id}",
+            produces={"application/json", "application/xml"}
+    )
     public ResponseEntity<Environment> findById(@PathVariable Long id) {
         Environment environment = environmentService.findById(id);
-        if (environment == null ) {
-            return ResponseEntity.notFound().build();
-        } else return ResponseEntity.ok().body(environment);
+        if (environment == null ) return ResponseEntity.notFound().build();
+        else return ResponseEntity.ok().body(environment);
     }
 
     //Remove same method from ConfigurationController?
-    @GetMapping(value="/all/{environmentId}/configurations", produces={"application/json", "application/xml"})
+    @GetMapping(
+            //path="/all/{environmentId}/configurations",
+            value = "/all/{environmentId}/configurations",
+            produces={"application/json", "application/xml"}
+    )
     public ResponseEntity<Collection<Configuration>> findEnvironmentAndBelongingConfigurationsByEnvironmentId(@PathVariable Long environmentId) {
         //Collection<Environment> environments = environmentService.findAll();
         Collection<Configuration> configurations = configurationService.findByEnvironmentId(environmentId);
-        if ( configurations == null ) {
-            return ResponseEntity.notFound().build();
-        } else return ResponseEntity.ok().body(configurations);
+        if ( configurations == null )return ResponseEntity.notFound().build();
+         else return ResponseEntity.ok().body(configurations);
     }
 
     //todo - Finish this method
-    @GetMapping(value="/byId/updateEnvironmentDescription/{id}", produces={"application/json", "application/xml"})
-    public ResponseEntity<Environment> updateDescriptionById(@PathVariable Long id, @RequestParam String description) {
-        //String description = "null"; //Trenger denne fra React(?)
-        environmentService.updateDescriptionById(id, description);
-        return null;
+    @PutMapping(
+            value="/updateEnvironmentDescription/{id}",
+            consumes={"application/json","application/xml"},
+            produces={"application/json","application/xml"}
+    )
+    //public ResponseEntity<Void> updateDescriptionById(@PathVariable Long id, @RequestParam(value="description", required=true) String description) {
+    public ResponseEntity<Void> updateDescriptionById(@PathVariable Long id, @RequestBody String description) {
+        if (environmentService.updateDescriptionById(id, description) == null) return ResponseEntity.notFound().build();
+        else return ResponseEntity.ok().build();
     }
 
     //todo - Finish this method
-    @GetMapping(value="/byId/addEnvironment", produces={"application/json", "application/xml"})
-    public ResponseEntity<Environment> addEnvironment() {
-        Environment environment = new Environment(); //Trenger verdier fra React(?)
+    @PostMapping (
+            value="/addEnvironment",
+            consumes={"application/json","application/xml"},
+            produces={"application/json","application/xml"}
+    )
+    public ResponseEntity<Environment> addEnvironment(@RequestBody Environment environment) {
         environmentService.addEnvironment(environment);
-        return null;
+        Long id = environment.getId();
+        URI uri = URI.create("/"+id);
+        return ResponseEntity.created(uri).body(environment);
     }
 
 }

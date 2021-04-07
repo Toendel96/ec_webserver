@@ -55,3 +55,8 @@ Swagger documentation added by:
 
 NB: Remember to update the Maven-dependencies from the POM-file.
    
+
+# Security
+
+## Token-based API authentication
+Source: https://blog.softtek.com/en/token-based-api-authentication-with-spring-and-jwt 

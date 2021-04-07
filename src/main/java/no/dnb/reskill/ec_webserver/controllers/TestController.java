@@ -25,10 +25,12 @@ public class TestController {
 
     @PostMapping("/user")
     public User login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
+        //validate username/password
+
         String token = getJWTToken(username);
         User user = new User();
         user.setUsername(username);
-        //user.setToken
+        user.setToken(token);
         return user;
     }
 

@@ -1,10 +1,10 @@
 package no.dnb.reskill.ec_webserver.controllers;
 
-import no.dnb.reskill.ec_webserver.models.Environment;
 import no.dnb.reskill.ec_webserver.models.User;
-import no.dnb.reskill.ec_webserver.services.ConfigurationService;
 import no.dnb.reskill.ec_webserver.services.UserService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,32 +16,62 @@ import java.util.Collection;
 @CrossOrigin
 
 public class UserController {
-
-
-
-
     private UserService userService;
-    private ConfigurationService configurationService;
+    private final String SUPER_SECRET_TOKEN = "meineWunderschoeneToken";
 
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
-        this.configurationService = configurationService;
         }
 
 
+    @GetMapping("/hello")
+    public ResponseEntity<String> helloWorld(
+            @RequestParam(value="name", defaultValue="World") String name,
+            @RequestHeader("Authentication") String token
+    ) {
+        if ( token.equals(SUPER_SECRET_TOKEN) ) {
+            String feedback = "Hello " + name + "!";
+            return ResponseEntity.ok(feedback);
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
 
-        @GetMapping(
-                value="/all",
-                produces={"application/json", "application/xml"}
-        )
-     public ResponseEntity<Collection<User>> findAll(@PathVariable Long id) {
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<User> login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
+
+        User user = userService.findByUsername(username);
+        if (user != null) {
+            if (user.getPassword().equalsIgnoreCase(pwd)) {
+                user.setToken(SUPER_SECRET_TOKEN);
+                return ResponseEntity.ok().body(user);
+            }
+            else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            }
+
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
+
+
+
+    @GetMapping(value="/all",
+            produces={"application/json", "application/xml"}
+    )
+     public ResponseEntity<Collection<User>> findAll() {
        Collection<User> user = userService.findAll();
        if ( user == null ) {
                  return ResponseEntity.notFound().build();
            }
-       else
+       else {
            return ResponseEntity.ok().body(user);
+       }
   }
 
 
@@ -55,7 +85,7 @@ public class UserController {
             return ResponseEntity.ok().body(user);
         }
     }
-    
+
     //todo - Finish this method
     @PutMapping(
             value="/updateUserDescription/{id}",
@@ -64,8 +94,11 @@ public class UserController {
     )
     //public ResponseEntity<Void> updateDescriptionById(@PathVariable Long id, @RequestParam(value="description", required=true) String description) {
     public ResponseEntity<Void> updateDescriptionById(@PathVariable Long id, @RequestBody String description) {
-        if (userService.updateDescriptionById(id, description) == null) return ResponseEntity.notFound().build();
-        else return ResponseEntity.ok().build();
+//        if (userService.updateDescriptionById(id, description) == null)
+//            return ResponseEntity.notFound().build();
+//        else
+//            return ResponseEntity.ok().build();
+        return null;
     }
 
     //todo - Finish this method
@@ -75,10 +108,11 @@ public class UserController {
             produces={"application/json","application/xml"}
     )
     public ResponseEntity<User> addUser(@RequestBody User user) {
-        User e = userService.addUser(user);
-        Long id = e.getId();
-        URI uri = URI.create("/"+id);
-        return ResponseEntity.created(uri).body(e);
+        //User e = userService.addUser(user);
+//        Long id = e.getId();
+//        URI uri = URI.create("/"+id);
+//        return ResponseEntity.created(uri).body(e);
+        return null;
     }
 
     }

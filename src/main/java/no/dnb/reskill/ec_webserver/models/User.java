@@ -25,9 +25,9 @@ public class User {
     private String token;
 
 
-    @OneToMany (mappedBy = "user")
-    @JsonManagedReference
-    private List<Configuration> configurations;
+//    @OneToMany (mappedBy = "user")
+//    @JsonManagedReference
+//    private List<Configuration> configurations;
 
 
     /*

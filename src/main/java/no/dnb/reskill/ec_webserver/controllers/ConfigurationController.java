@@ -74,18 +74,6 @@ public class ConfigurationController {
         }
     }
 
-    //Remove this, and only use EnvironmentController.findEnvironmentAndBelongingConfigurationsByEnvironmentId() ?
-//    @GetMapping(value="/byEnvironmentId/{environmentId}")
-//    public ResponseEntity<Collection<Configuration>> findByEnvironmentId(@PathVariable Long environmentId) {
-//        Collection<Configuration> configurations = configurationService.findByEnvironmentId(environmentId);
-//        if ( configurations == null ) {
-//            return ResponseEntity.notFound().build();
-//        }
-//        else {
-//            return ResponseEntity.ok().body(configurations);
-//        }
-//    }
-
 
 
     @PostMapping(

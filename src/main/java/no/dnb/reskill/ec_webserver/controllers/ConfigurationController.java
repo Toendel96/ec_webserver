@@ -31,19 +31,20 @@ public class ConfigurationController {
         }
     }
 
-    //Remove this, and only use EnvironmentController.findEnvironmentAndBelongingConfigurationsByEnvironmentId() ?
-    @GetMapping(value="/byEnvironmentId/{environmentId}")
-    public ResponseEntity<Collection<Configuration>> findByEnvironmentId(@PathVariable Long environmentId) {
-        Collection<Configuration> configurations = configurationService.findByEnvironmentId(environmentId);
-        if ( configurations == null ) {
-            return ResponseEntity.notFound().build();
-        }
-        else {
-            return ResponseEntity.ok().body(configurations);
-        }
-    }
+    //Removing this later
+//    @GetMapping(value="/byEnvironmentId/{environmentId}")
+//    public ResponseEntity<Collection<Configuration>> findByEnvironmentId(@PathVariable Long environmentId) {
+//        Collection<Configuration> configurations = configurationService.findByEnvironmentId(environmentId);
+//        if ( configurations == null ) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        else {
+//            return ResponseEntity.ok().body(configurations);
+//        }
+//    }
 
-    @GetMapping(value="/byId/{id}")
+    //@GetMapping(value="/byId/{id}")
+    @GetMapping(value="/{id}")
     public ResponseEntity<Configuration> findById(@PathVariable Long id) {
         Configuration configuration = configurationService.findById(id);
         if ( configuration == null ) {

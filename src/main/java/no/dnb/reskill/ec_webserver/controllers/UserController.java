@@ -25,20 +25,6 @@ public class UserController {
         }
 
 
-    @GetMapping("/hello")
-    public ResponseEntity<String> helloWorld(
-            @RequestParam(value="name", defaultValue="World") String name,
-            @RequestHeader("Authentication") String token
-    ) {
-        if ( token.equals(SUPER_SECRET_TOKEN) ) {
-            String feedback = "Hello " + name + "!";
-            return ResponseEntity.ok(feedback);
-        }
-        else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-
-    }
 
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
@@ -57,6 +43,23 @@ public class UserController {
         else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
+    }
+
+
+
+    @GetMapping("/hello")
+    public ResponseEntity<String> helloWorld(
+            @RequestParam(value="name", defaultValue="World") String name,
+            @RequestHeader("Authentication") String token
+    ) {
+        if ( token.equals(SUPER_SECRET_TOKEN) ) {
+            String feedback = "Hello " + name + "!";
+            return ResponseEntity.ok(feedback);
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
     }
 
 

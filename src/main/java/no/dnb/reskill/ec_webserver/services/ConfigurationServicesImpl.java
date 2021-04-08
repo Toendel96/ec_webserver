@@ -5,6 +5,7 @@ import no.dnb.reskill.ec_webserver.repositories.ConfigurationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -16,11 +17,14 @@ public class ConfigurationServicesImpl implements ConfigurationService {
         this.configurationRepository = configurationRepository;
     }
 
-
-    // Implementation of interface methods
     @Override
     public List<Configuration> findAll() {
         return (List<Configuration>) configurationRepository.findAll();
+    }
+
+    @Override
+    public Configuration findById(Long id) {
+        return configurationRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -28,9 +32,23 @@ public class ConfigurationServicesImpl implements ConfigurationService {
         return (List<Configuration>) configurationRepository.findByEnvironmentId(environmentId);
     }
 
+    @Override
+    public Configuration insertConfiguration(Configuration configuration) throws IllegalArgumentException {
+        return configurationRepository.save(configuration);
+    }
 
     @Override
-    public Configuration findById(Long id) {
-        return configurationRepository.findById(id).orElse(null);
+    public Configuration updateConfiguration(Configuration configuration) throws IllegalArgumentException {
+        return configurationRepository.save(configuration);
+    }
+
+    @Override
+    public void deleteConfigurationById(Long id) throws IllegalArgumentException {
+        configurationRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Configuration> findAllModifiedAfterDate(LocalDateTime date) {
+        return (List<Configuration>) configurationRepository.findAllModifiedAfterDate(date);
     }
 }

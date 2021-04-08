@@ -37,7 +37,6 @@ public class Configuration {
             columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime timestamp_modified;
 
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="environment_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -45,7 +44,7 @@ public class Configuration {
     private Environment environment;
 
 
-    @ManyToOne (fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore

@@ -26,11 +26,6 @@ public class Environment {
     private String short_name;
     private String description;
 
-//    @JsonManagedReference
-//    @OneToMany(mappedBy = "environment", fetch=FetchType.LAZY)
-//    private List<Configuration> configurations;
-
-
     @Override
     public boolean equals(Object other) {
         boolean result = false;

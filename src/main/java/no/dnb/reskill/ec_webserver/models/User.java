@@ -25,16 +25,5 @@ public class User {
     private String token;
 
 
-//    @OneToMany (mappedBy = "user")
-//    @JsonManagedReference
-//    private List<Configuration> configurations;
-
-
-    /*
-     id
-- user (FK User.id) (hardcoded)
-- password (hardcoded)
-     */
-
 
 }

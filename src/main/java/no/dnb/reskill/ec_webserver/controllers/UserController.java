@@ -104,7 +104,6 @@ public class UserController {
         return null;
     }
 
-    //todo - Finish this method
     @PostMapping (
             value="/addUser",
             consumes={"application/json","application/xml"},

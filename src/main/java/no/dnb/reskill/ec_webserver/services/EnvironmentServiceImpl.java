@@ -45,5 +45,10 @@ public class EnvironmentServiceImpl implements EnvironmentService {
 
     }
 
+    @Override
+    public void deleteEnvironmentById(Long id) throws IllegalArgumentException {
+        environmentRepository.deleteById(id);
+    }
+
 
 }

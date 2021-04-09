@@ -61,7 +61,6 @@ public class EnvironmentController {
          else return ResponseEntity.ok().body(configurations);
     }
 
-    //todo - Finish this method
     @PutMapping(
             value="/updateEnvironmentDescription/{id}",
             consumes={"application/json","application/xml"},
@@ -73,7 +72,6 @@ public class EnvironmentController {
         else return ResponseEntity.ok().build();
     }
 
-    //todo - Finish this method
     @PostMapping (
             value="/addEnvironment",
             consumes={"application/json","application/xml"},
@@ -84,6 +82,18 @@ public class EnvironmentController {
         Long id = e.getId();
         URI uri = URI.create("/"+id);
         return ResponseEntity.created(uri).body(e);
+    }
+
+    @DeleteMapping (
+            value="/deleteEnvironment/{id}",
+            consumes={"application/json","application/xml"},
+            produces={"application/json","application/xml"}
+    )
+    public ResponseEntity<Void> deleteEnvironmentById(@PathVariable Long id) {
+        try {
+            environmentService.deleteEnvironmentById(id);
+            return ResponseEntity.ok().build();
+        } catch (IllegalArgumentException e) {return ResponseEntity.notFound().build();}
     }
 
 }

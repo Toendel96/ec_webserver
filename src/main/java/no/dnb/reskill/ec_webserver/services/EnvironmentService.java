@@ -10,6 +10,7 @@ public interface EnvironmentService {
     public Environment findById(Long id);
     public Environment updateDescriptionById(Long id, String description);
     public Environment addEnvironment(Environment environment);
+    public void deleteEnvironmentById(Long id);
 
 
 }

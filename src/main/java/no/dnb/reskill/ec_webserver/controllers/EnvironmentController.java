@@ -85,9 +85,9 @@ public class EnvironmentController {
     }
 
     @DeleteMapping (
-            value="/deleteEnvironment/{id}",
-            consumes={"application/json","application/xml"},
-            produces={"application/json","application/xml"}
+            value="/deleteEnvironment/{id}"//,
+//            consumes={"application/json","application/xml"},
+//            produces={"application/json","application/xml"}
     )
     public ResponseEntity<Void> deleteEnvironmentById(@PathVariable Long id) {
         try {

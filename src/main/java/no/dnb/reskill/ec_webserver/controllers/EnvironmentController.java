@@ -51,7 +51,7 @@ public class EnvironmentController {
     //Remove same method from ConfigurationController?
     @GetMapping(
             //path="/all/{environmentId}/configurations",
-            value = "/all/{environmentId}/configurations",
+            value = "/{environmentId}/configurations",
             produces={"application/json", "application/xml"}
     )
     public ResponseEntity<Collection<Configuration>> findEnvironmentAndBelongingConfigurationsByEnvironmentId(@PathVariable Long environmentId) {

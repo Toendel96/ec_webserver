@@ -2,7 +2,6 @@ package no.dnb.reskill.ec_webserver.services;
 
 import no.dnb.reskill.ec_webserver.models.Configuration;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 

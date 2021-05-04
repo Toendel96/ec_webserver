@@ -6,7 +6,6 @@ import no.dnb.reskill.ec_webserver.models.User;
 import no.dnb.reskill.ec_webserver.services.ConfigurationService;
 import no.dnb.reskill.ec_webserver.services.EnvironmentService;
 import no.dnb.reskill.ec_webserver.services.UserService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -91,7 +90,7 @@ public class ConfigurationController {
 
         if (e != null && u != null) {
             configuration.setEnvironment(e);
-            configuration.setUser(u);
+            //configuration.setUser(u); TODO: Removed in order to test
 
             insertedConfiguration = configurationService.insertConfiguration(configuration);
             URI uri = URI.create("/configurations/" + insertedConfiguration.getId());
@@ -114,7 +113,7 @@ public class ConfigurationController {
         Configuration existingConfiguration = configurationService.findById(id);
         if (existingConfiguration != null && configuration.getId() == id) {
             configuration.setEnvironment(existingConfiguration.getEnvironment());
-            configuration.setUser(existingConfiguration.getUser());
+            //configuration.setUser(existingConfiguration.getUser()); TODO: Removed in order to test
             configurationService.updateConfiguration(configuration);
             return ResponseEntity.ok().build();
         }

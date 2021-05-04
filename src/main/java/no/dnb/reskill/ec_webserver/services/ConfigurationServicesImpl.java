@@ -1,5 +1,6 @@
 package no.dnb.reskill.ec_webserver.services;
 
+
 import no.dnb.reskill.ec_webserver.models.Configuration;
 import no.dnb.reskill.ec_webserver.repositories.ConfigurationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +11,13 @@ import java.util.List;
 
 @Service
 public class ConfigurationServicesImpl implements ConfigurationService {
+    @Autowired
     private ConfigurationRepository configurationRepository;
 
-    @Autowired
-    public ConfigurationServicesImpl(ConfigurationRepository configurationRepository) {
-        this.configurationRepository = configurationRepository;
-    }
+//    @Autowired
+//    public ConfigurationServicesImpl(ConfigurationRepository configurationRepository) {
+//        this.configurationRepository = configurationRepository;
+//    }
 
     @Override
     public List<Configuration> findAll() {
@@ -29,7 +31,9 @@ public class ConfigurationServicesImpl implements ConfigurationService {
 
     @Override
     public List<Configuration> findByEnvironmentId(Long environmentId) {
-        return (List<Configuration>) configurationRepository.findByEnvironmentId(environmentId);
+        return null;
+        //TODO: Fix this
+        // return (List<ConfigurationM>) configurationRepository.findByEnvironmentId(environmentId);
     }
 
     @Override
@@ -49,6 +53,8 @@ public class ConfigurationServicesImpl implements ConfigurationService {
 
     @Override
     public List<Configuration> findAllModifiedAfterDate(LocalDateTime date) {
-        return (List<Configuration>) configurationRepository.findAllModifiedAfterDate(date);
+        return null;
+        //TODO: Fix this
+        //return (List<ConfigurationM>) configurationRepository.findAllModifiedAfterDate(date);
     }
 }

@@ -1,11 +1,12 @@
 package no.dnb.reskill.ec_webserver.repositories;
 
 import no.dnb.reskill.ec_webserver.models.Environment;
-import org.springframework.data.jpa.repository.Query;
+import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
+//@Repository
+@EnableScan
 public interface EnvironmentRepository extends CrudRepository<Environment, Long> {
 
     //Not used

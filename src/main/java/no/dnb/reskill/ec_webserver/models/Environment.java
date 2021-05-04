@@ -1,30 +1,43 @@
 package no.dnb.reskill.ec_webserver.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import javax.persistence.*;
-import java.util.List;
-import java.util.Objects;
 
-@Getter
-@Setter
-@NoArgsConstructor
 @AllArgsConstructor
-
-@Entity
-@Table(name="Environment")
+@NoArgsConstructor
+@DynamoDBTable(tableName = "Environment")
 public class Environment {
-
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY) //This equals auto_increment
     private Long id;
     private String short_name;
     private String description;
+
+    @DynamoDBHashKey(attributeName="id")
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @DynamoDBAttribute
+    public String getShort_name() {
+        return short_name;
+    }
+    public void setShort_name(String short_name) {
+        this.short_name = short_name;
+    }
+
+    @DynamoDBAttribute
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     @Override
     public boolean equals(Object other) {

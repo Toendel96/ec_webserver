@@ -1,6 +1,5 @@
 package no.dnb.reskill.ec_webserver.services;
 
-import no.dnb.reskill.ec_webserver.models.Configuration;
 import no.dnb.reskill.ec_webserver.models.User;
 
 import java.util.List;

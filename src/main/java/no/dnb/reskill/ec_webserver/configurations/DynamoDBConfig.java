@@ -14,6 +14,7 @@ import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import org.springframework.context.annotation.Primary;
 
 
 @Configuration
@@ -29,37 +30,46 @@ public class DynamoDBConfig {
     @Value("${amazon.aws.secretkey}")
     private String amazonAWSSecretKey;
 
-    @Bean
-    public AmazonDynamoDB amazonDynamoDB(AWSCredentials awsCredentials) {
-        @SuppressWarnings("deprecation")
-        AmazonDynamoDB amazonDynamoDB = new AmazonDynamoDBClient(awsCredentials);
-        return amazonDynamoDB;
-    }
 
     @Bean
-    public AWSCredentials awsCredentials() {
+    public AWSCredentials amazonAWSCredentials() {
         return new BasicAWSCredentials(amazonAWSAccessKey, amazonAWSSecretKey);
     }
 
+    public AWSCredentialsProvider amazonAWSCredentialsProvider() {
+        return new AWSStaticCredentialsProvider(amazonAWSCredentials());
+    }
 
-//
-//    public AWSCredentialsProvider amazonAWSCredentialsProvider() {
-//        return new AWSStaticCredentialsProvider(amazonAWSCredentials());
-//    }
-//
+    @Bean("amazonDynamoDB")
+    public AmazonDynamoDB amazonDynamoDB() {
+        AwsClientBuilder.EndpointConfiguration endpoint = new AwsClientBuilder.EndpointConfiguration(amazonDynamoDBEndpoint, "eu-west-1");
+        return AmazonDynamoDBClientBuilder
+                .standard()
+                .withEndpointConfiguration(endpoint)
+                .withCredentials(amazonAWSCredentialsProvider())
+                .build();
+    }
+
+
+
 //    @Bean
-//    public AWSCredentials amazonAWSCredentials() {
+//    public AWSCredentials awsCredentials() {
 //        return new BasicAWSCredentials(amazonAWSAccessKey, amazonAWSSecretKey);
 //    }
+
+
+//
+
+//
+
 //
 //    @Bean
 //    public DynamoDBMapperConfig dynamoDBMapperConfig() {
 //        return DynamoDBMapperConfig.DEFAULT;
 //    }
-//
 //    @Bean
-//    public DynamoDBMapper dynamoDBMapper(AmazonDynamoDB amazonDynamoDB, DynamoDBMapperConfig config) {
-//        return new DynamoDBMapper(amazonDynamoDB, config);
+//    public DynamoDBMapper dynamoDBMapper(AmazonDynamoDB amazonDynamoDB) {
+//        return new DynamoDBMapper(amazonDynamoDB, DynamoDBMapperConfig.DEFAULT);
 //    }
 //
 //

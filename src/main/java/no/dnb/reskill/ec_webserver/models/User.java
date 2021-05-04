@@ -3,21 +3,27 @@ package no.dnb.reskill.ec_webserver.models;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIgnore;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 
 @NoArgsConstructor
 @AllArgsConstructor
+@DynamoDBTable(tableName = "User")
 public class User {
-
-
     private Long id;
     private String username;
     private String password;
     private String user_type;
-    @DynamoDBIgnore
     private String token;
+
+    public User(Long id, String username, String password, String user_type) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.user_type = user_type;
+    }
 
     @DynamoDBHashKey(attributeName="id")
     public Long getId() {

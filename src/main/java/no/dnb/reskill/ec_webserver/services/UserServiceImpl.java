@@ -8,12 +8,13 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+    @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+//    @Autowired
+//    public UserServiceImpl(UserRepository userRepository) {
+//        this.userRepository = userRepository;
+//    }
 
 
     // Implementation of interface methods
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+        return null; //userRepository.findByUsername(username);
     }
 
     @Override

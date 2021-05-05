@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.Collection;
+
 
 @RestController
 @RequestMapping("/configurations")
@@ -63,7 +63,7 @@ public class ConfigurationController {
             value="/{id}",
             produces={"application/json", "application/xml"}
     )
-    public ResponseEntity<Configuration> findById(@PathVariable Long id) {
+    public ResponseEntity<Configuration> findById(@PathVariable String id) {
         Configuration configuration = configurationService.findById(id);
         if ( configuration == null ) {
             return ResponseEntity.notFound().build();
@@ -74,14 +74,12 @@ public class ConfigurationController {
     }
 
 
-
     @PostMapping(
             path="",
             consumes={"application/json", "application/xml"},
             produces={"application/json", "application/xml"}
             )
     public ResponseEntity<Configuration> insertConfiguration(
-//            @RequestParam(name="environmentId", required = true) Long environmentId,
             @RequestParam(name="environmentId", required = true) String environmentId,
             @RequestParam(name="userId", required = true) String userId,
             @RequestBody Configuration configuration ) {
@@ -109,12 +107,12 @@ public class ConfigurationController {
             produces={"application/json", "application/xml"}
     )
     public ResponseEntity<Configuration> updateConfiguration(
-            @PathVariable Long id,
+            @PathVariable String id,
             @RequestBody Configuration configuration) {
         Configuration existingConfiguration = configurationService.findById(id);
         if (existingConfiguration != null && configuration.getId() == id) {
             configuration.setEnvironment(existingConfiguration.getEnvironment());
-            //configuration.setUser(existingConfiguration.getUser()); TODO: Removed in order to test
+            configuration.setUserId(existingConfiguration.getUserId());
             configurationService.updateConfiguration(configuration);
             return ResponseEntity.ok().build();
         }
@@ -126,7 +124,7 @@ public class ConfigurationController {
 
     @DeleteMapping(path={"/{id}"})
     public ResponseEntity<Void> deleteConfigurationById(
-            @PathVariable Long id) {
+            @PathVariable String id) {
         try {
             configurationService.deleteConfigurationById(id);
             return  ResponseEntity.ok().build();

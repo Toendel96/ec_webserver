@@ -11,13 +11,12 @@ import java.util.List;
 
 @Service
 public class ConfigurationServicesImpl implements ConfigurationService {
-    @Autowired
     private ConfigurationRepository configurationRepository;
 
-//    @Autowired
-//    public ConfigurationServicesImpl(ConfigurationRepository configurationRepository) {
-//        this.configurationRepository = configurationRepository;
-//    }
+    @Autowired
+    public ConfigurationServicesImpl(ConfigurationRepository configurationRepository) {
+        this.configurationRepository = configurationRepository;
+    }
 
     @Override
     public List<Configuration> findAll() {
@@ -25,16 +24,11 @@ public class ConfigurationServicesImpl implements ConfigurationService {
     }
 
     @Override
-    public Configuration findById(Long id) {
+    public Configuration findById(String id) {
         return configurationRepository.findById(id).orElse(null);
     }
 
-    @Override
-    public List<Configuration> findByEnvironmentId(String environmentId) {
-        return null;
-        //TODO: Fix this
-        // return (List<ConfigurationM>) configurationRepository.findByEnvironmentId(environmentId);
-    }
+
 
     @Override
     public Configuration insertConfiguration(Configuration configuration) throws IllegalArgumentException {
@@ -47,8 +41,16 @@ public class ConfigurationServicesImpl implements ConfigurationService {
     }
 
     @Override
-    public void deleteConfigurationById(Long id) throws IllegalArgumentException {
+    public void deleteConfigurationById(String id) throws IllegalArgumentException {
         configurationRepository.deleteById(id);
+    }
+
+
+    @Override
+    public List<Configuration> findByEnvironmentId(String environmentId) {
+        return null;
+        //TODO: Fix this
+        // return (List<ConfigurationM>) configurationRepository.findByEnvironmentId(environmentId);
     }
 
     @Override

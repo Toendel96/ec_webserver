@@ -56,7 +56,6 @@ public class EnvironmentController {
             produces={"application/json", "application/xml"}
     )
     public ResponseEntity<Collection<Configuration>> findEnvironmentAndBelongingConfigurationsByEnvironmentId(@PathVariable String environmentId) {
-        //Environment environments = environmentService.findById(environmentId);
         Collection<Configuration> configurations = configurationService.findByEnvironmentId(environmentId);
         if ( configurations == null )return ResponseEntity.notFound().build();
          else return ResponseEntity.ok().body(configurations);

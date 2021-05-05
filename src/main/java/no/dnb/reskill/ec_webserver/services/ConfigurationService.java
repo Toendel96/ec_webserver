@@ -15,8 +15,4 @@ public interface ConfigurationService {
     public Configuration updateConfiguration(Configuration configuration);
     public void deleteConfigurationById(String id);
 
-//    public Iterable<Configuration> findByEnvironmentId(String environmentId);
-//    Iterable<Configuration> findAllModifiedAfterDate(LocalDateTime date);
-
-
 }

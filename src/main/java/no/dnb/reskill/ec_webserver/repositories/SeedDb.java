@@ -41,13 +41,13 @@ public class SeedDb {
 
     private void seedUserTable() {
         this.userRepository.save(
-            new User(1L, "Salim", "pass1", "Admin"));
+            new User("Salim", "pass1", "Admin"));
         this.userRepository.save(
-                new User(2L, "Petter", "pass2", "Admin"));
+                new User( "Petter", "pass2", "Admin"));
         this.userRepository.save(
-                new User(3L, "Sigbjørn", "pass3", "Admin"));
+                new User( "Sigbjørn", "pass3", "Admin"));
         this.userRepository.save(
-                new User(4L, "Svetlana", "pass4", "Admin"));
+                new User( "Svetlana", "pass4", "Admin"));
     }
 
 

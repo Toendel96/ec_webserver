@@ -77,7 +77,7 @@ public class UserController {
 
 
     @GetMapping(value="/{Id}")
-    public ResponseEntity<User> findById(@PathVariable Long Id) {
+    public ResponseEntity<User> findById(@PathVariable String Id) {
         User user = userService.findById(Id);
         if ( user == null ) {
             return ResponseEntity.notFound().build();

@@ -82,7 +82,7 @@ public class ConfigurationController {
             )
     public ResponseEntity<Configuration> insertConfiguration(
             @RequestParam(name="environmentId", required = true) Long environmentId,
-            @RequestParam(name="userId", required = true) Long userId,
+            @RequestParam(name="userId", required = true) String userId,
             @RequestBody Configuration configuration ) {
         Configuration insertedConfiguration;
         Environment e = environmentService.findById(environmentId);

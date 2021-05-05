@@ -7,8 +7,8 @@ import java.util.List;
 public interface UserService {
     // Which services should we offer for user?
     public List<User> findAll();
-    public User findById(Long id);
+    public User findById(String id);
     public User findByUsername(String username);
 
-    boolean updateDescriptionById(Long id, String description);
+    boolean updateDescriptionById(String id, String description);
 }

@@ -30,7 +30,7 @@ public class ConfigurationServicesImpl implements ConfigurationService {
     }
 
     @Override
-    public List<Configuration> findByEnvironmentId(Long environmentId) {
+    public List<Configuration> findByEnvironmentId(String environmentId) {
         return null;
         //TODO: Fix this
         // return (List<ConfigurationM>) configurationRepository.findByEnvironmentId(environmentId);

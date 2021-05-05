@@ -8,7 +8,7 @@ import java.util.List;
 public interface ConfigurationService {
     // Which services should we offer for configuration?
     public List<Configuration> findAll();
-    public List<Configuration> findByEnvironmentId(Long environmentId);
+    public List<Configuration> findByEnvironmentId(String environmentId);
     public Configuration findById(Long id);
     public List<Configuration> findAllModifiedAfterDate(LocalDateTime date);
     public Configuration insertConfiguration(Configuration configuration);

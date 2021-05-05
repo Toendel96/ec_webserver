@@ -14,9 +14,9 @@ public class Configuration {
     private LocalDateTime timestamp_added;
     private LocalDateTime timestamp_modified;
     private Long userId;
-    private Long environmentId;
+    private String environmentId;
 
-    public Configuration(Long id, String key_name, String value, Long userId, Long environmentId) {
+    public Configuration(Long id, String key_name, String value, Long userId, String environmentId) {
         this.id = id;
         this.key_name = key_name;
         this.value = value;
@@ -70,10 +70,10 @@ public class Configuration {
     }
 
     @DynamoDBAttribute
-    public Long getEnvironmentId() {
+    public String getEnvironmentId() {
         return environmentId;
     }
-    public void setEnvironmentId(Long environmentId) {
+    public void setEnvironmentId(String environmentId) {
         this.environmentId = environmentId;
     }
 

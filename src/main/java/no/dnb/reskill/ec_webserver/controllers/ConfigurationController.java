@@ -88,7 +88,7 @@ public class ConfigurationController {
         User u = userService.findById(userId);
 
         if (e != null && u != null) {
-            configuration.setEnvironment(e);
+            //configuration.setEnvironment(e); todo - denne feilet plutselig
             //configuration.setUser(u); TODO: Removed in order to test
 
             insertedConfiguration = configurationService.insertConfiguration(configuration);
@@ -111,8 +111,8 @@ public class ConfigurationController {
             @RequestBody Configuration configuration) {
         Configuration existingConfiguration = configurationService.findById(id);
         if (existingConfiguration != null && configuration.getId() == id) {
-            configuration.setEnvironment(existingConfiguration.getEnvironment());
-            configuration.setUserId(existingConfiguration.getUserId());
+//            configuration.setEnvironment(existingConfiguration.getEnvironment());
+//            configuration.setUserId(existingConfiguration.getUserId());
             configurationService.updateConfiguration(configuration);
             return ResponseEntity.ok().build();
         }

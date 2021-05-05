@@ -14,6 +14,12 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
+
+import static java.time.LocalTime.now;
+
 
 @Component
 public class SeedDb {
@@ -74,12 +80,13 @@ public class SeedDb {
         dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB);
 
         // Configuration Table
-        CreateTableRequest ctrConf = dynamoDBMapper.generateCreateTableRequest(Configuration.class)
+        CreateTableRequest ctr = dynamoDBMapper.generateCreateTableRequest(Configuration.class)
                 .withProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
-        TableUtils.createTableIfNotExists(amazonDynamoDB, ctrConf);
-        TableUtils.waitUntilActive(amazonDynamoDB, ctrConf.getTableName());
 
-        //seedConfigurationTable();
+        TableUtils.createTableIfNotExists(amazonDynamoDB, ctr);
+        TableUtils.waitUntilActive(amazonDynamoDB, ctr.getTableName());
+
+        seedConfigurationTable();
     }
 
 
@@ -96,20 +103,22 @@ public class SeedDb {
     }
 
 
-//    private void seedConfigurationTable() {
-//        this.configurationRepository.save(
-//            new Configuration("d726ee4b-125b-4571-8a32-a2482ff8eeb1", "Prod key 1", "key 1 value", "5b62a1da-95b0-4db5-9e7f-3b64dde15a06", "5b62a1da-95b0-4db5-9e7f-3b64dde15a07")
-//        );
-//        this.configurationRepository.save(
-//                new Configuration("d726ee4b-125b-4571-8a32-a2482ff8eeb2", "Prod key 2", "key 2 value", "5b62a1da-95b0-4db5-9e7f-3b64dde15a06", "5b62a1da-95b0-4db5-9e7f-3b64dde15a07")
-//        );
-//        this.configurationRepository.save(
-//                new Configuration("d726ee4b-125b-4571-8a32-a2482ff8eeb3", "Prod key 3", "key 3 value", "5b62a1da-95b0-4db5-9e7f-3b64dde15a06", "5b62a1da-95b0-4db5-9e7f-3b64dde15a07")
-//        );
-//        this.configurationRepository.save(
-//                new Configuration("d726ee4b-125b-4571-8a32-a2482ff8eeb4", "Prod key 4", "key 4 value", "5b62a1da-95b0-4db5-9e7f-3b64dde15a06", "5b62a1da-95b0-4db5-9e7f-3b64dde15a07")
-//        );
-//    }
+    private void seedConfigurationTable() {
+//        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        this.configurationRepository.save(
+            //new Configuration("d726ee4b-125b-4571-8a32-a2482ff8eeb1", "Prod key 1", "key 1 value", "5b62a1da-95b0-4db5-9e7f-3b64dde15a06", "5b62a1da-95b0-4db5-9e7f-3b64dde15a07")
+            new Configuration("test-Petter", "Prod key 111", "key 1 value", "test11111", "5b62a1da-95b0-4db5-9e7f-3b64dde15a07")
+        );
+        this.configurationRepository.save(
+                new Configuration("d726ee4b-125b-4571-8a32-a2482ff8eeb2", "Prod key 2", "key 2 value", "5b62a1da-95b0-4db5-9e7f-3b64dde15a06", "5b62a1da-95b0-4db5-9e7f-3b64dde15a07")
+        );
+        this.configurationRepository.save(
+                new Configuration("d726ee4b-125b-4571-8a32-a2482ff8eeb3", "Prod key 3", "key 3 value", "5b62a1da-95b0-4db5-9e7f-3b64dde15a06", "5b62a1da-95b0-4db5-9e7f-3b64dde15a07")
+        );
+        this.configurationRepository.save(
+                new Configuration("d726ee4b-125b-4571-8a32-a2482ff8eeb4", "Prod key 4", "key 4 value", "5b62a1da-95b0-4db5-9e7f-3b64dde15a06", "5b62a1da-95b0-4db5-9e7f-3b64dde15a07")
+        );
+    }
 
 
     private void seedEnvironmentTable() {

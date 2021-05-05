@@ -23,12 +23,14 @@ public class EnvironmentServiceImpl implements EnvironmentService {
     }
 
     @Override
-    public Environment findById(Long id) {
+    //public Environment findById(Long id) {
+    public Environment findById(String id) {
         return environmentRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Environment updateDescriptionById(Long id, String description) {
+//    public Environment updateDescriptionById(Long id, String description) {
+    public Environment updateDescriptionById(String id, String description) {
         Environment environment = findById(id);
         if (environment != null) {
             environment.setDescription(description);
@@ -46,7 +48,8 @@ public class EnvironmentServiceImpl implements EnvironmentService {
     }
 
     @Override
-    public void deleteEnvironmentById(Long id) throws IllegalArgumentException {
+//    public void deleteEnvironmentById(Long id) throws IllegalArgumentException {
+    public void deleteEnvironmentById(String id) throws IllegalArgumentException {
         environmentRepository.deleteById(id);
     }
 

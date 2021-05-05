@@ -42,7 +42,8 @@ public class EnvironmentController {
             value="/{id}",
             produces={"application/json", "application/xml"}
     )
-    public ResponseEntity<Environment> findById(@PathVariable Long id) {
+//    public ResponseEntity<Environment> findById(@PathVariable Long id) {
+    public ResponseEntity<Environment> findById(@PathVariable String id) {
         Environment environment = environmentService.findById(id);
         if (environment == null ) return ResponseEntity.notFound().build();
         else return ResponseEntity.ok().body(environment);
@@ -67,7 +68,8 @@ public class EnvironmentController {
             produces={"application/json","application/xml"}
     )
     //public ResponseEntity<Void> updateDescriptionById(@PathVariable Long id, @RequestParam(value="description", required=true) String description) {
-    public ResponseEntity<Void> updateDescriptionById(@PathVariable Long id, @RequestBody String description) {
+    //public ResponseEntity<Void> updateDescriptionById(@PathVariable Long id, @RequestBody String description) {
+    public ResponseEntity<Void> updateDescriptionById(@PathVariable String id, @RequestBody String description) {
         if (environmentService.updateDescriptionById(id, description) == null) return ResponseEntity.notFound().build();
         else return ResponseEntity.ok().build();
     }
@@ -79,7 +81,8 @@ public class EnvironmentController {
     )
     public ResponseEntity<Environment> addEnvironment(@RequestBody Environment environment) {
         Environment e = environmentService.addEnvironment(environment);
-        Long id = e.getId();
+        //Long id = e.getId();
+        String id = e.getId();
         URI uri = URI.create("/"+id);
         return ResponseEntity.created(uri).body(e);
     }
@@ -89,7 +92,8 @@ public class EnvironmentController {
 //            consumes={"application/json","application/xml"},
 //            produces={"application/json","application/xml"}
     )
-    public ResponseEntity<Void> deleteEnvironmentById(@PathVariable Long id) {
+//    public ResponseEntity<Void> deleteEnvironmentById(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteEnvironmentById(@PathVariable String id) {
         try {
             environmentService.deleteEnvironmentById(id);
             return ResponseEntity.ok().build();

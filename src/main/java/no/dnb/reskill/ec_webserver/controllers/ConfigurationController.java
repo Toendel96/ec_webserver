@@ -81,7 +81,8 @@ public class ConfigurationController {
             produces={"application/json", "application/xml"}
             )
     public ResponseEntity<Configuration> insertConfiguration(
-            @RequestParam(name="environmentId", required = true) Long environmentId,
+//            @RequestParam(name="environmentId", required = true) Long environmentId,
+            @RequestParam(name="environmentId", required = true) String environmentId,
             @RequestParam(name="userId", required = true) String userId,
             @RequestBody Configuration configuration ) {
         Configuration insertedConfiguration;

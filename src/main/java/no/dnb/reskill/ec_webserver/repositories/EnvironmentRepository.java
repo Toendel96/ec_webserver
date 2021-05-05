@@ -7,7 +7,8 @@ import org.springframework.stereotype.Repository;
 
 //@Repository
 @EnableScan
-public interface EnvironmentRepository extends CrudRepository<Environment, Long> {
+public interface EnvironmentRepository extends CrudRepository<Environment, String> {
+//public interface EnvironmentRepository extends CrudRepository<Environment, Long> {
 
     //Not used
 //    @Query("SELECT e FROM Environment e")

@@ -48,16 +48,7 @@ public class SeedDb {
         TableUtils.createTableIfNotExists(amazonDynamoDB, ctr);
         TableUtils.waitUntilActive(amazonDynamoDB, ctr.getTableName());
 
-        // Configuration Table
-        CreateTableRequest ctrConf = dynamoDBMapper.generateCreateTableRequest(Configuration.class)
-                .withProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
-        TableUtils.createTableIfNotExists(amazonDynamoDB, ctrConf);
-        TableUtils.waitUntilActive(amazonDynamoDB, ctrConf.getTableName());
-
-
-
         seedUserTable();
-        seedConfigurationTable();
 
     }
 
@@ -76,6 +67,23 @@ public class SeedDb {
         seedEnvironmentTable();
     }
 
+    @Bean
+    @DependsOn({"amazonDynamoDB"})
+//    @Lazy
+    public void SeedDbConfiguration() throws InterruptedException {
+        dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB);
+
+        // Configuration Table
+        CreateTableRequest ctrConf = dynamoDBMapper.generateCreateTableRequest(Configuration.class)
+                .withProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
+        TableUtils.createTableIfNotExists(amazonDynamoDB, ctrConf);
+        TableUtils.waitUntilActive(amazonDynamoDB, ctrConf.getTableName());
+
+        //seedConfigurationTable();
+    }
+
+
+
     private void seedUserTable() {
         this.userRepository.save(
             new User("5b62a1da-95b0-4db5-9e7f-3b64dde15a06","Salim", "pass1", "Admin"));
@@ -88,21 +96,20 @@ public class SeedDb {
     }
 
 
-    private void seedConfigurationTable() {
-        this.configurationRepository.save(
-            new Configuration("d726ee4b-125b-4571-8a32-a2482ff8eeb1", "Prod key 1", "key 1 value", "5b62a1da-95b0-4db5-9e7f-3b64dde15a06", "5b62a1da-95b0-4db5-9e7f-3b64dde15a07")
-        );
-        this.configurationRepository.save(
-                new Configuration("d726ee4b-125b-4571-8a32-a2482ff8eeb2", "Prod key 2", "key 2 value", "5b62a1da-95b0-4db5-9e7f-3b64dde15a06", "5b62a1da-95b0-4db5-9e7f-3b64dde15a07")
-        );
-        this.configurationRepository.save(
-                new Configuration("d726ee4b-125b-4571-8a32-a2482ff8eeb3", "Prod key 3", "key 3 value", "5b62a1da-95b0-4db5-9e7f-3b64dde15a06", "5b62a1da-95b0-4db5-9e7f-3b64dde15a07")
-        );
-        this.configurationRepository.save(
-                new Configuration("d726ee4b-125b-4571-8a32-a2482ff8eeb4", "Prod key 4", "key 4 value", "5b62a1da-95b0-4db5-9e7f-3b64dde15a06", "5b62a1da-95b0-4db5-9e7f-3b64dde15a07")
-        );
-
-    }
+//    private void seedConfigurationTable() {
+//        this.configurationRepository.save(
+//            new Configuration("d726ee4b-125b-4571-8a32-a2482ff8eeb1", "Prod key 1", "key 1 value", "5b62a1da-95b0-4db5-9e7f-3b64dde15a06", "5b62a1da-95b0-4db5-9e7f-3b64dde15a07")
+//        );
+//        this.configurationRepository.save(
+//                new Configuration("d726ee4b-125b-4571-8a32-a2482ff8eeb2", "Prod key 2", "key 2 value", "5b62a1da-95b0-4db5-9e7f-3b64dde15a06", "5b62a1da-95b0-4db5-9e7f-3b64dde15a07")
+//        );
+//        this.configurationRepository.save(
+//                new Configuration("d726ee4b-125b-4571-8a32-a2482ff8eeb3", "Prod key 3", "key 3 value", "5b62a1da-95b0-4db5-9e7f-3b64dde15a06", "5b62a1da-95b0-4db5-9e7f-3b64dde15a07")
+//        );
+//        this.configurationRepository.save(
+//                new Configuration("d726ee4b-125b-4571-8a32-a2482ff8eeb4", "Prod key 4", "key 4 value", "5b62a1da-95b0-4db5-9e7f-3b64dde15a06", "5b62a1da-95b0-4db5-9e7f-3b64dde15a07")
+//        );
+//    }
 
 
     private void seedEnvironmentTable() {

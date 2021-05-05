@@ -1,37 +1,6 @@
 # Markdown syntax guide
 https://www.markdownguide.org/basic-syntax/
 
-# Team TODOs
-### Samarbeid
-- [X] Avtale møtestruktur (faste tidspunkt, eller alltid på)?
-- [ ] Fremdriftsplan og ansvarsfordeling
-
-
-### Applikasjon
-General/Application:
-- [ ] Hente oppsummering
-
-USER:
-- [X] SALIM **Liste opp alle brukere**
-- [ ] SIGBJØRN Logge inn / Autentisere administrator (inn: brukernavn og passord) > token
-- [X] SIGBJØRN Validere token (inn: token) > boolean
-NB: To ulike controllere? user-controller vs. admin-controller)
-     
-
-ENVIRONMENT:
-- [X] PETTER **Liste opp alle miljøer**
-- [X] PETTER Hente konfigurasjoner for et bestemt miljø (inn: environment_id) > liste over konfigurasjoner
-- [X] PETTER *Endre beskrivelse for et eksisterende miljø (kun admin)*
-- [ ] PETTER *Legge til nytt miljø (kun admin)*
-
-CONFIGURATION:
-- [X] SIGBJØRN **Hente konfigurasjoner (inn: environment_id) > liste over konfigurasjoner**
-- [ ] *Legge til configurasjon (kun admin)*
-- [ ] *Endre konfigurasjon (kun admin)*
-- [ ] *Slette konfigurasjon (kun admin)*
-- [ ] Filtrere konfigurasjoner (ref tid for endring)
-
-
 # Useful project links
 
 ## GitHub Code Repositories

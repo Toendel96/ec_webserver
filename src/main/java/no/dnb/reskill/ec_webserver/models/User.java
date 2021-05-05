@@ -38,6 +38,7 @@ public class User {
     }
 
     @DynamoDBAttribute
+    //@DynamoDBIndexHashKey(attributeName = "username")
     public String getUsername() {
         return username;
     }

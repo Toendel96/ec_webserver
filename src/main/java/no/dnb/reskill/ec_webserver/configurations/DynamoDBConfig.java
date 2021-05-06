@@ -19,22 +19,7 @@ public class DynamoDBConfig {
     @Value("${amazon.dynamodb.endpoint}")
     private String amazonDynamoDBEndpoint;
 
-//    // TODO: Find another way to handle this
-//    @Value("${amazon.aws.accesskey}")
-//    private String amazonAWSAccessKey;
-//
-//    @Value("${amazon.aws.secretkey}")
-//    private String amazonAWSSecretKey;
 
-
-//    @Bean
-//    public AWSCredentials amazonAWSCredentials() {
-//        return new BasicAWSCredentials(amazonAWSAccessKey, amazonAWSSecretKey);
-//    }
-//
-//    public AWSCredentialsProvider amazonAWSCredentialsProvider() {
-//        return new AWSStaticCredentialsProvider(amazonAWSCredentials());
-//    }
 
     @Bean("amazonDynamoDB")
     public AmazonDynamoDB amazonDynamoDB() {

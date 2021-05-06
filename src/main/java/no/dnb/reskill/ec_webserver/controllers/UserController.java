@@ -51,7 +51,7 @@ public class UserController {
             @RequestHeader("Authentication") String token
     ) {
         if ( token.equals(SUPER_SECRET_TOKEN) ) {
-            String feedback = "Hello " + name + "!";
+            String feedback = "Hello " + name + " (Thanks to Glenn)!";
             return ResponseEntity.ok(feedback);
         }
         else {

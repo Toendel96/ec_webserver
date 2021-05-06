@@ -42,10 +42,11 @@ public class Configuration {
     public void setEnvironment(Environment e) {
         environmentId = e.getId();
     }
-    @DynamoDBIgnore
-    public Environment getEnvironment() {
-        return null;
-    }
+//    @DynamoDBIgnore
+//    public Environment getEnvironment() {
+//
+//        return null;
+//    }
 
 }
 

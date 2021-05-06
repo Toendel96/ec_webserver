@@ -84,18 +84,15 @@ public class ConfigurationController {
             @RequestParam(name="userId", required = true) String userId,
             @RequestBody Configuration configuration ) {
         Configuration insertedConfiguration;
-        Environment e = environmentService.findById(environmentId);
-        User u = userService.findById(userId);
 
-        if (e != null && u != null) {
-            //configuration.setEnvironment(e); todo - denne feilet plutselig
-            //configuration.setUser(u); TODO: Removed in order to test
-
+        try {
+            configuration.setEnvironmentId(environmentId);
+            configuration.setUserId(userId);
             insertedConfiguration = configurationService.insertConfiguration(configuration);
             URI uri = URI.create("/configurations/" + insertedConfiguration.getId());
             return ResponseEntity.created(uri).body(insertedConfiguration);
         }
-        else {
+        catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
     }
@@ -110,9 +107,9 @@ public class ConfigurationController {
             @PathVariable String id,
             @RequestBody Configuration configuration) {
         Configuration existingConfiguration = configurationService.findById(id);
-        if (existingConfiguration != null && configuration.getId() == id) {
-//            configuration.setEnvironment(existingConfiguration.getEnvironment());
-//            configuration.setUserId(existingConfiguration.getUserId());
+        if (existingConfiguration != null && configuration.getId().equals(id)) {
+            configuration.setEnvironmentId(existingConfiguration.getEnvironmentId());
+            configuration.setUserId(existingConfiguration.getUserId());
             configurationService.updateConfiguration(configuration);
             return ResponseEntity.ok().build();
         }

@@ -17,7 +17,7 @@
    [AWS account] = 244530008913.dkr.ecr.eu-west-1.amazonaws.com  
   Source: https://docs.amazonaws.cn/en_us/AmazonECR/latest/userguide/getting-started-cli.html
    
-## Build a container
+## Build a container and sync with ECS repository
 
 ### Create Dockerfile
 
@@ -87,4 +87,80 @@ Test the local container with the new tag with the command:
 You upload your docker image to AWS by running the following command:  
 `docker push 244530008913.dkr.ecr.eu-west-1.amazonaws.com/group-s3p-backendserver:latest`
 
+
+## Deploy a container using AWS Fargate
+
+### yml-files for composer
+
+You need two files placed in the root-folder of your project to continue.  
+`docker-compose.yml` 
+```yaml
+version: '3'
+services:
+  web:
+    image: 244530008913.dkr.ecr.eu-west-1.amazonaws.com/group-s3p-backendserver:latest
+    ports:
+      - "8111:8111"
+    logging:
+      driver: awslogs
+      options: 
+        awslogs-group: reskill_group_sps
+        awslogs-region: eu-west-1
+        awslogs-stream-prefix: web
+```
+> the 'image' property must be aligned with the image you pushed to repository
+
+`ecs-params.yml`
+```yaml
+version: 1
+task_definition:
+  task_execution_role: ecsTaskExecutionRole
+  ecs_network_mode: awsvpc
+  task_size:
+    mem_limit: 0.5GB
+    cpu_limit: 256
+run_params:
+  network_configuration:
+    awsvpc_configuration:
+      subnets:
+        - "subnet-59d44a03"
+        - "subnet-a07854e8"
+      security_groups:
+        - "sg-062794537aa93e725"
+      assign_public_ip: ENABLED
+```
+> The 'task_execution_role', 'subnets' and 'security_groups' are 
+> related to your aws account. 
+
+### Create a configuration for your ECS cluster
+Run the following command to create a cluster configuration:   
+`ecs-cli configure --cluster group-s3p --default-launch-type FARGATE --region eu-west-1 --config-name assignment3`
+
+> "group-s3p" = the name you will give your cluster  
+> "assignment3" = the name of this configuration (to be 
+> referenced to in later commands)
+
+### Create ECS cluster
+Run the following command to create the cluster:  
+`ecs-cli up --cluster-config assignment3`
+
+
+### Deploy your Docker container to cluster
+Run the following command to deploy the container and make it public available on AWS:  
+`ecs-cli compose --project-name group_s3p_project service up --create-log-groups --cluster-config assignment3`
+
+> "group_s3p_project" = The name of this container (???) when it's running
+
+(This command uses the `docker-compose.yml` and the `ecs-params.yml` files to start
+the container properly.)
+
+
+### Other commands:
+- View your running containers:  
+`ecs-cli compose --project-name group_s3p_project service ps --cluster-config assignment3`
+  
+- Show logs from container/task:  
+`ecs-cli logs --task-id [task_id] --follow --cluster-config assignment3`
+
+- Scaling up/down:
 

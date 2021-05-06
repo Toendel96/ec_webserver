@@ -52,7 +52,7 @@ CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app.jar"]
 
 ### Build Docker image
 Run the command:  
-`docker build -t assignment2_backend`  
+`docker build -t assignment2_backend .`  
 >"*assignment2_backend*" = name of your container
 
 Test the image by running the container locally, with the command:  

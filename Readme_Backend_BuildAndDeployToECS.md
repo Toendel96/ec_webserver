@@ -164,3 +164,7 @@ the container properly.)
 
 - Scaling up/down:
 
+
+### Extra things to keep in mind: 
+- Remember 
+

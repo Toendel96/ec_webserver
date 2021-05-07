@@ -119,10 +119,12 @@ public class DynamoDBConfig {
 
 ## Repository files
 Removed JPA-related imports and functionality, and replace 
-the annotation `@Repository` with `@EnableScan`.
+the annotation `@Repository` with `@EnableScan`.<br>
+Changed from `<Configuration, Long>` to `<Configuration, String>`
+- Best practice with NoSQL Hashkey is to use String
 ```java
 @EnableScan
-public interface ConfigurationRepository extends CrudRepository<Configuration, Long> {
+public interface ConfigurationRepository extends CrudRepository<Configuration, String> {
 }
 ```
 
@@ -265,7 +267,12 @@ different data sources - based on the following
 article: https://github.com/derjust/spring-data-dynamodb-examples/blob/master/README-multirepo.md
 
 ## AWS access keys on GitHub...
-Almost made "bad guys" hack Glenn's AWS account. 
+Almost made "bad guys" hack Glenn's AWS account.<br>
+Best practice is to remove keys from the code, and `configure environment variables` when connecting to DynamoDB from local Spring Boot server. 
+1) Run
+2) Edit Configurations
+3) Add `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` with values to environment variables
+4) Apply and ok
 
 
 # Useful sources

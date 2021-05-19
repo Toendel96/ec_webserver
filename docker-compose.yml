@@ -1,12 +1,17 @@
-version: '3'
+version: '3.7'
 services:
-  web:
-    image: 244530008913.dkr.ecr.eu-west-1.amazonaws.com/group-s3p-backendserver:latest
+  dynamodb:
+    container_name: dynamodb_docker
+    image: "${DB_IMAGE}"
     ports:
-      - "8111:8111"
-    logging:
-      driver: awslogs
-      options: 
-        awslogs-group: reskill_group_sps
-        awslogs-region: eu-west-1
-        awslogs-stream-prefix: web
+      - '8000:8000'
+  s3p-app:
+    container_name: s3p_backend
+    image: "${BACKEND_IMAGE}"
+    environment:
+      - SERVER_PORT=${SERVER_PORT}
+      - NO_NEED_FOR_THIS=but still included to show a concept
+    env_file:
+      - "${ENV_FILE}"
+    ports:
+      - "8111:${SERVER_PORT}"

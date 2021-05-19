@@ -19,10 +19,14 @@ public class DynamoDBConfig {
     @Value("${amazon.dynamodb.endpoint}")
     private String amazonDynamoDBEndpoint;
 
-
+    @Value("${aws.access.key.id}")
+    private String amazonKey;
 
     @Bean("amazonDynamoDB")
     public AmazonDynamoDB amazonDynamoDB() {
+        System.out.println("DynamoDB endpoint: " + amazonDynamoDBEndpoint + "-------------------------");
+        System.out.println("Access key: " + amazonKey + "---------------------------");
+
         AwsClientBuilder.EndpointConfiguration endpoint = new AwsClientBuilder.EndpointConfiguration(amazonDynamoDBEndpoint, "eu-west-1");
         return AmazonDynamoDBClientBuilder
                 .standard()

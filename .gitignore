@@ -31,3 +31,16 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+### Environment variables for docker
+.env
+.env.prod
+
+
+
+### Terraform ###
+/.terraform
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup

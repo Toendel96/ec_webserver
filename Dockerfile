@@ -16,6 +16,10 @@ RUN mvn package -DskipTests
 # https://docs.docker.com/develop/develop-images/multistage-build/#use-multi-stage-builds
 FROM adoptopenjdk/openjdk11:alpine-slim
 
+# Default ENV-variables needed at runtime
+ENV SERVER_PORT=8001
+ENV AMAZON_DYNAMODB_ENDPOINT=http://dynamodb:8000
+
 # Copy the jar to the production image from the builder stage.
 COPY --from=builder /app/target/*.jar /app.jar
 

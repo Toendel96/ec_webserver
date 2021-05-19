@@ -38,7 +38,33 @@ Check the Readme_Terraform.md in the frontend github-project (link in background
   AWS ECS CLI installed
 - An AWS account and an user with admin access
 - AWS credentials saved on your localhost (run `aws configure` to verify or add your credentials)
-- Cloned and updated GIT repo for backend: https://github.com/Toendel96/ec_webserver 
+- Cloned and updated GIT repo for backend: https://github.com/Toendel96/ec_webserver
+- The following 4 files are not a part of the git repo, and must be added manually:
+
+`.env`
+```properties
+BACKEND_IMAGE=assignment2_backend
+DB_IMAGE=instructure/dynamo-local-admin
+SERVER_PORT=8008
+ENV_FILE=env_vars_development
+```
+
+`.env.prod` (to be copied to EC2 later on)
+```properties
+BACKEND_IMAGE=[aws_account_number].dkr.ecr.[aws_region].amazonaws.com/[repository]:latest
+DB_IMAGE=[aws_account_number].dkr.ecr.[aws_region].amazonaws.com/[repository]:latest
+SERVER_PORT=8008
+ENV_FILE=env_vars_production
+```
+
+2 files: `env_var_development` and `env_var_production` (to be copied to EC2 later on)
+```properties
+AWS_ACCESS_KEY_ID=dummy
+AWS_SECRET_ACCESS_KEY=dummy
+AWS_REGION=eu-north-1
+```
+> AWS DynamoDB is running in a container, and the dummy keys are needed to connect 
+> to the DB.
 
 ## 1: Create (and test) locally
 

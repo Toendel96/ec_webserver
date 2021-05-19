@@ -36,7 +36,8 @@ build/
 ### Environment variables for docker
 .env
 .env.prod
-
+env_vars_development
+env_vars_production
 
 
 ### Terraform ###

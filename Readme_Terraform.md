@@ -38,6 +38,7 @@ Check the Readme_Terraform.md in the frontend github-project (link in background
   AWS ECS CLI installed
 - An AWS account and an user with admin access
 - AWS credentials saved on your localhost (run `aws configure` to verify or add your credentials)
+- AWS keypair (EC2) created and a local copy of private and public key available (to be able to ssh between localhost and server)
 - Cloned and updated GIT repo for backend: https://github.com/Toendel96/ec_webserver
 - The following 4 files are not a part of the git repo, and must be added manually:
 
